@@ -11,6 +11,7 @@ exports.createUser = async (req, res) => {
     return res.status(400).json({ errors: errors.array() });
   }
 
+  // Get information from the request body
   const { email, password } = req.body;
 
   // Checks if the user already exists

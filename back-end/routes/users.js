@@ -1,13 +1,13 @@
 const express = require('express');
 
 const router = express.Router();
-const { check } = require('express-validator');
+// const { check } = require('express-validator');
 const userController = require('../controllers/userController');
 
 // Route to create a new user
 router.post(
   '/',
-  [
+/*   [
     check('name').not().isEmpty().withMessage('Name is required'),
     check('email').isEmail().withMessage('Email must be valid'),
     check('password')
@@ -16,7 +16,7 @@ router.post(
     check('cpf')
       .isLength({ min: 11 })
       .withMessage('CPF must be at least 11 characters'),
-  ],
+  ], */
   userController.createUser
 );
 

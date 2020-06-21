@@ -11,8 +11,10 @@ exports.userAuthentication = async (req, res) => {
     return res.status(400).json({ errors: errors.array() });
   }
 
-  // Checks user data in the request
+  // Get information from the request body
   const { email, password } = req.body;
+
+  // Checks whether user exists and data are correct
   try {
     const user = await User.findOne({ email });
     if (!user) {
@@ -44,5 +46,14 @@ exports.userAuthentication = async (req, res) => {
     );
   } catch (error) {
     // console.log(error);
+  }
+};
+
+exports.autheticadedUser = async (req, res) => {
+  try {
+    const user = await User.findById(req.user.id).select('-password');
+    res.json({ user });
+  } catch (error) {
+    res.status(500).json({ message: 'Error' });
   }
 };
