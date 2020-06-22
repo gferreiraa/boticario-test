@@ -3,6 +3,9 @@ import { Link } from 'react-router-dom';
 import NotificationContext from "../../context/Notifications/notificationContext";
 import AuthContext from "../../context/Authentication/authContext";
 
+import * as S from "./styled";
+import  logoBoticario  from "../../assets/icons/logoBoticario.svg";
+
 const Login = ({ history }) => {
 
   // Get context notification info
@@ -49,34 +52,47 @@ const Login = ({ history }) => {
     sessionInit({ email, password });
   }
 
+// {<S.LoginTitle>your Cashback</S.LoginTitle>
+
   return (
-    <div>
-    { notification ? (<div className={`alerta ${notification.category}`} >{ notification.message }</div>) : null }
-      <h1>Entrar</h1>
-      <form
-        onSubmit={onSubmit}
-      >
-        <label htmlFor="email">Email</label>
-        <input 
-          type="email"
-          id="email"
-          name="email"
-          value={email}
-          placeholder="Digite seu email"
-          onChange={onChange}
-        />
-        <label htmlFor="password">Password</label>
-        <input 
-          type="password"
-          id="password"
-          name="password"
-          value={password}
-          placeholder="Digite seu password"
-          onChange={onChange}
-        />
-        <button type="submit">Entrar</button>
-      </form>
-      <Link to={'/nova-conta'}>Criar nova conta</Link>
+    <div className="body-app">
+      <S.LayoutWrapper>
+        <S.HCard>
+          { notification ? (<div className={`alerta ${notification.category}`} >{ notification.message }</div>) : null }
+          <S.logoBoticario>
+            <img
+              src={logoBoticario}
+            />
+          </S.logoBoticario>
+            
+            <form
+              onSubmit={onSubmit}
+            >
+              <S.Label htmlFor="email">Email:</S.Label>
+              <S.Input  
+                type="email"
+                id="email"
+                name="email"
+                value={email}
+                placeholder="Digite seu email"
+                onChange={onChange}
+              />
+              <S.Label htmlFor="password">Senha:</S.Label>
+              <S.Input 
+                type="password"
+                id="password"
+                name="password"
+                value={password}
+                placeholder="Digite sua senha"
+                onChange={onChange}
+              />
+              <S.LoginButton type="submit">Entrar</S.LoginButton>
+            </form>
+            <Link to={'/nova-conta'}>Criar nova conta</Link>
+        
+        </S.HCard>
+        </S.LayoutWrapper>
+      <S.Footer>* Consulte as regras para aplicação  do seu cashback.</S.Footer>
     </div>
   );
 }

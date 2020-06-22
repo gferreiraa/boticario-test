@@ -1,0 +1,1 @@
+export { default as logoBoticario } from "./icons/logoBoticario.svg";

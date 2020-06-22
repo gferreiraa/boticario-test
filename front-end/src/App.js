@@ -6,6 +6,8 @@ import NotificationState from "./context/Notifications/notificationState";
 import AuthState from "./context/Authentication/authState";
 import authToken from "./config/authToken";
 
+import GlobalStyles from "./styles/global";
+
 const token = localStorage.getItem('token');
 if(token) {
   authToken(token)
@@ -16,6 +18,7 @@ function App() {
     <NotificationState>
       <AuthState>
         <Router>
+          <GlobalStyles/>
           <Switch>
             <Route exact path="/" component={Login} />
             <Route exact path="/nova-conta" component={Register} />

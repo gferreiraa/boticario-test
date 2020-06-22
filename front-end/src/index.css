@@ -34,3 +34,9 @@ code {
   background-color: rgb(230, 78, 78);
   color: #fff;
 }
+
+.body-app {
+  display: flex;
+  min-height: 100vh;
+  flex-direction: column;
+}
