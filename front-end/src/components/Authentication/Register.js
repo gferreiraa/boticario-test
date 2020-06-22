@@ -3,6 +3,9 @@ import { Link } from 'react-router-dom';
 import NotificationContext from "../../context/Notifications/notificationContext";
 import AuthContext from "../../context/Authentication/authContext";
 
+import * as S from "./styled";
+import  logoBoticario  from "../../assets/icons/logoBoticario.svg";
+
 const Register = ({ history }) => {
 
   // Get context notification info
@@ -79,61 +82,71 @@ const Register = ({ history }) => {
   }
 
   return (
-    <div>
-      <h1>Cadastrar</h1>
-      { notification ? (<div className={`alerta ${notification.category}`} >{ notification.message }</div>) : null }
-      <form
-        onSubmit={onSubmit}
-      >
-        <label htmlFor="name">Nome</label>
-        <input 
-          type="text"
-          id="name"
-          name="name"
-          value={name}
-          placeholder="Digite seu nome"
-          onChange={onChange}
-        />
-        <label htmlFor="email">Email</label>
-        <input 
-          type="email"
-          id="email"
-          name="email"
-          value={email}
-          placeholder="Digite seu email"
-          onChange={onChange}
-        />
-        <label htmlFor="password">Senha</label>
-        <input 
-          type="password"
-          id="password"
-          name="password"
-          value={password}
-          placeholder="Digite seu password"
-          onChange={onChange}
-        />
-        <label htmlFor="confirm">Confirmar Senha</label>
-        <input 
-          type="password"
-          id="confirm"
-          name="confirm"
-          value={confirm}
-          placeholder="Digite seu password"
-          onChange={onChange}
-        />
-        <label htmlFor="cpf">CPF</label>
-        <input 
-          type="text"
-          id="cpf"
-          name="cpf"
-          value={cpf}
-          placeholder="Digite seu CPF"
-          onChange={onChange}
-        />
-        <button type="submit">Criar nova conta</button>
-      </form>
-      <Link to={'/'}>Voltar</Link>
-    </div>
+    <S.PageContainer>
+      <S.LayoutWrapper>
+        <S.HCard>
+          { notification ? (<div className={`alerta ${notification.category}`} >{ notification.message }</div>) : null }
+          <S.logoBoticario>
+            <img
+            src={logoBoticario}
+            />
+            </S.logoBoticario>
+            <h1>Cadastrar</h1>
+          <form
+            onSubmit={onSubmit}
+          >
+            <S.Label htmlFor="name">Nome:</S.Label>
+            <S.Input
+              type="text"
+              id="name"
+              name="name"
+              value={name}
+              placeholder="Digite seu nome"
+              onChange={onChange}
+            />
+            <S.Label htmlFor="email">Email:</S.Label>
+            <S.Input
+              type="email"
+              id="email"
+              name="email"
+              value={email}
+              placeholder="Digite seu email"
+              onChange={onChange}
+            />
+            <S.Label htmlFor="cpf">CPF:</S.Label>
+            <S.Input
+              type="text"
+              id="cpf"
+              name="cpf"
+              value={cpf}
+              placeholder="Digite seu CPF"
+              onChange={onChange}
+            />
+            <S.Label htmlFor="password">Senha:</S.Label>
+            <S.Input
+              type="password"
+              id="password"
+              name="password"
+              value={password}
+              placeholder="Digite seu password"
+              onChange={onChange}
+            />
+            <S.Label htmlFor="confirm">Confirmar Senha:</S.Label>
+            <S.Input
+              type="password"
+              id="confirm"
+              name="confirm"
+              value={confirm}
+              placeholder="Digite seu password"
+              onChange={onChange}
+            />
+            <S.LoginButton type="submit">Criar nova conta</S.LoginButton>
+          </form>
+          <S.LinkRoute><Link to={'/'}>Voltar</Link></S.LinkRoute>
+        </S.HCard>
+      </S.LayoutWrapper>
+      <S.Footer>* Consulte as regras para aplicação  do seu cashback.</S.Footer>
+    </S.PageContainer>
   );
 }
 

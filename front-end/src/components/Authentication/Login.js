@@ -52,48 +52,46 @@ const Login = ({ history }) => {
     sessionInit({ email, password });
   }
 
-// {<S.LoginTitle>your Cashback</S.LoginTitle>
-
-  return (
-    <div className="body-app">
+    return (
+    <S.PageContainer>
       <S.LayoutWrapper>
         <S.HCard>
           { notification ? (<div className={`alerta ${notification.category}`} >{ notification.message }</div>) : null }
           <S.logoBoticario>
             <img
-              src={logoBoticario}
+            src={logoBoticario}
             />
           </S.logoBoticario>
-            
-            <form
-              onSubmit={onSubmit}
-            >
-              <S.Label htmlFor="email">Email:</S.Label>
-              <S.Input  
-                type="email"
-                id="email"
-                name="email"
-                value={email}
-                placeholder="Digite seu email"
-                onChange={onChange}
-              />
-              <S.Label htmlFor="password">Senha:</S.Label>
-              <S.Input 
-                type="password"
-                id="password"
-                name="password"
-                value={password}
-                placeholder="Digite sua senha"
-                onChange={onChange}
-              />
-              <S.LoginButton type="submit">Entrar</S.LoginButton>
-            </form>
-            <Link to={'/nova-conta'}>Criar nova conta</Link>
-        
+          <form
+            onSubmit={onSubmit}
+          >
+            <S.Label htmlFor="email">Email:</S.Label>
+            <S.Input  
+              type="email"
+              id="email"
+              name="email"
+              value={email}
+              placeholder="Digite seu email"
+              onChange={onChange}
+              required
+            />
+            <S.Label htmlFor="password">Senha:</S.Label>
+            <S.Input 
+              type="password"
+              id="password"
+              name="password"
+              value={password}
+              placeholder="Digite sua senha"
+              onChange={onChange}
+              required
+            />
+            <S.LoginButton type="submit">Entrar</S.LoginButton>
+          </form>
+          <S.LinkRoute><Link to={'/nova-conta'}>Criar nova conta</Link></S.LinkRoute>
         </S.HCard>
-        </S.LayoutWrapper>
+      </S.LayoutWrapper>
       <S.Footer>* Consulte as regras para aplicação  do seu cashback.</S.Footer>
-    </div>
+    </S.PageContainer>
   );
 }
 

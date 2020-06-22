@@ -1,32 +1,35 @@
 import styled from "styled-components"
 import tw from "tailwind.macro"
 
-
-export const HCard = styled.div`
-  background: #fff;
-  ${tw `max-w-sm rounded-lg overflow-hidden shadow-lg p-12`}
+export const PageContainer = styled.div`
+  display: flex;
+  min-height: 100vh;
+  flex-direction: column;
+  background: linear-gradient(to right, #654ea3, #eaafc8);
 `
 
-export const logoBoticario = styled.div`
-  & img {
-    filter: brightness(0.5);
-    width: 280px;
-    ${tw `block mb-5`}
-  }
-`
-
-export const LayoutWrapper =  styled.main`
+export const LayoutWrapper = styled.main`
   display:flex;
   flex-direction: column;
   flex: 1 0 auto;
   ${tw `h-full flex justify-center items-center`}
 `
-export const LoginTitle = styled.h4`
-  font-size:  24px; 
-  font-weight:  600; 
-  color:  #000; 
-  opacity: .5; 
+
+export const HCard = styled.div`
+  background: #fff;
+  ${tw `w-3/4 sm:w-auto md:w-auto lg:w-auto rounded-lg overflow-hidden shadow-lg p-12 sm:p-6 md:p-12 lg:p-12`}
 `
+
+export const logoBoticario = styled.div`
+  display: flex;
+  justify-content: center;
+  & img {
+    filter: brightness(0.5);
+    width: 280px;
+    ${tw `mb-5`}
+  }
+`
+
 export const Input = styled.input` 
   height: 56px; 
   border: none; 
@@ -40,7 +43,7 @@ export const Label =  styled.label`
   color:  #000;
   opacity:  .8;
   font-weight:  400; 
-  ${tw `block mb-2`}
+  ${tw `block mb-1`}
 `
 export const LoginButton = styled.button`
   width: auto;
@@ -49,7 +52,7 @@ export const LoginButton = styled.button`
   text-align:  center; 
   padding:  15px 40px;
   margin-top:  5px; 
-  background-color: rgb(182,157,230); 
+  background-color: rgb(104, 80, 163, 1); 
   color:  #fff; 
   font-size:  14px;
   margin-left:  auto; 
@@ -59,13 +62,13 @@ export const LoginButton = styled.button`
   transition:  all .3s ease; 
   outline: 0; 
   ${tw `rounded-lg w-full block mb-4`}
-  &:hover {
+/*   &:hover {
     transform:  translateY(-3px);
     box-shadow:  0 2px 6px -1px rgba($primary, .65);
     &:active {
       transform:  scale(.99);
     }
-  }
+  } */
 ` 
 export const ButtonRegister = styled.div`
   & > a {
@@ -78,11 +81,21 @@ export const ButtonRegister = styled.div`
 
 export const Footer = styled.footer`
   font-size: 12px;
-  color: #969696;
+  color: #fff;
   text-align: center;
   margin-bottom: 10px;
 `
-
+export const LinkRoute = styled.span`
+  font-size: 12px;
+  text-align: center;
+  margin-bottom: 10px;
+  display: flex;
+  justify-content: flex-end;
+  & > a {
+    text-decoration: none;
+    color: #7f7f7f;
+  }
+`
 
 
 
