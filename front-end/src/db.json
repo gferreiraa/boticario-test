@@ -1,0 +1,68 @@
+{
+  "purchases": [
+    {
+      "id": 1,
+      "code": "Jugo de Zanahoria",
+      "price": "31111",
+      "data": "10/05/2020",
+      "status": "Em Aprovação",
+      "cashback": "10%"
+    },
+    {
+      "code": 312321,
+      "price": 312312,
+      "data": "2020-06-04",
+      "status": "em aprovação",
+      "cashback": "10%",
+      "id": 2
+    },
+    {
+      "code": 312321,
+      "price": 312312,
+      "data": "2020-06-04",
+      "status": "em aprovação",
+      "cashback": "10%",
+      "id": 3
+    },
+    {
+      "code": 312321,
+      "price": 312312,
+      "data": "2020-06-04",
+      "status": "em aprovação",
+      "cashback": "10%",
+      "id": 4
+    },
+    {
+      "code": 321312,
+      "price": 2312,
+      "data": "2020-06-04",
+      "status": "em aprovação",
+      "cashback": "10%",
+      "id": 5
+    },
+    {
+      "code": 12345,
+      "price": 12345,
+      "data": "2020-06-01",
+      "status": "em aprovação",
+      "cashback": "10%",
+      "id": 6
+    },
+    {
+      "code": 312312,
+      "price": 31312,
+      "data": "2020-06-10",
+      "status": "em aprovação",
+      "cashback": "10%",
+      "id": 7
+    },
+    {
+      "code": 31231,
+      "price": 312312,
+      "data": "2020-06-04",
+      "status": "em aprovação",
+      "cashback": "10%",
+      "id": 8
+    }
+  ]
+}

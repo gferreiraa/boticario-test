@@ -1,18 +1,25 @@
 import React from 'react';
-import {
-  BrowserRouter as Router,
-  Switch,
-  Route,
-} from 'react-router-dom';
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 
-import { Login, Register, Purchase, PrivateRoute } from './components';
+import {
+  Login,
+  Register,
+  Purchase,
+  PrivateRoute,
+  NewPurchase,
+  EditePurchase,
+} from './components';
+
 import NotificationState from './context/Notifications/notificationState';
 import AuthState from './context/Authentication/authState';
 import authToken from './config/authToken';
 
 import GlobalStyles from './styles/global';
-
 import { CSSTransition, TransitionGroup } from 'react-transition-group';
+
+//Redux
+import { Provider } from "react-redux";
+import store from "./store/store"
 
 const token = localStorage.getItem('token');
 if (token) {
@@ -24,24 +31,40 @@ function App() {
     <NotificationState>
       <AuthState>
         <Router>
-          <GlobalStyles />
-          <Route
-            render={({ location }) => (
-              <TransitionGroup>
-                <CSSTransition
-                  key={location.key}
-                  timeout={450}
-                  classNames="fade"
-                >
-                  <Switch location={location}>
-                    <Route exact path="/" component={Login} />
-                    <Route path="/nova-conta" component={Register} />
-                    <Route path="/minhas-compras" component={Purchase} />
-                  </Switch>
-                </CSSTransition>
-              </TransitionGroup>
-            )}
-          />
+          <Provider store={store}>
+            <GlobalStyles />
+            <Route
+              render={({ location }) => (
+                <TransitionGroup>
+                  <CSSTransition
+                    key={location.key}
+                    timeout={450}
+                    classNames="fade"
+                  >
+                    <Switch location={location}>
+                      <Route exact path="/" component={Login} />
+                      <Route exact path="/nova-conta" component={Register} />
+                      <PrivateRoute
+                        exact
+                        path="/minhas-compras"
+                        component={Purchase}
+                      />
+                      <PrivateRoute
+                        exact
+                        path="/minhas-compras/nova-compra"
+                        component={NewPurchase}
+                      />
+                      <PrivateRoute
+                        exact
+                        path="/minhas-compras/nova-compra/:id"
+                        component={EditePurchase}
+                      />
+                    </Switch>
+                  </CSSTransition>
+                </TransitionGroup>
+              )}
+            />
+          </Provider>
         </Router>
       </AuthState>
     </NotificationState>
