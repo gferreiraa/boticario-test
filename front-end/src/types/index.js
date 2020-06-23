@@ -1,9 +1,9 @@
-export const SHOW_NOTIFICATION = "SHOW_NOTIFICATION";
-export const HIDE_NOTIFICATION = "HIDE_NOTIFICATION";
+export const SHOW_NOTIFICATION = 'SHOW_NOTIFICATION';
+export const HIDE_NOTIFICATION = 'HIDE_NOTIFICATION';
 
-export const REGISTER_SUCESS = "REGISTER_SUCESS";
-export const REGISTER_ERROR = "REGISTER_ERROR";
-export const GET_USER = "GET_USER";
-export const LOGIN_SUCESS = "LOGIN_SUCESS";
-export const LOGIN_ERROR = "LOGIN_ERROR";
-export const LOGOUT = "LOGOUT";
+export const REGISTER_SUCESS = 'REGISTER_SUCESS';
+export const REGISTER_ERROR = 'REGISTER_ERROR';
+export const GET_USER = 'GET_USER';
+export const LOGIN_SUCESS = 'LOGIN_SUCESS';
+export const LOGIN_ERROR = 'LOGIN_ERROR';
+export const LOGOUT = 'LOGOUT';

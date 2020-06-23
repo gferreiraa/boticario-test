@@ -1,32 +1,32 @@
-import { 
+import {
   REGISTER_SUCESS,
   REGISTER_ERROR,
   GET_USER,
   LOGIN_SUCESS,
   LOGIN_ERROR,
-  LOGOUT
-} from  "../../types";
+  LOGOUT,
+} from '../../types';
 
 export default (state, action) => {
-  switch(action.type) {
+  switch (action.type) {
     case REGISTER_SUCESS:
-      case LOGIN_SUCESS:
+    case LOGIN_SUCESS:
       localStorage.setItem('token', action.payload.token);
       return {
         ...state,
         authenticated: true,
         message: null,
-        loading: false
-      }
+        loading: false,
+      };
     case GET_USER:
       return {
         ...state,
         authenticated: true,
         user: action.payload,
-        loading: false
-      }
-      case LOGIN_ERROR:
-      case LOGOUT:
+        loading: false,
+      };
+    case LOGIN_ERROR:
+    case LOGOUT:
     case REGISTER_ERROR:
       localStorage.removeItem('token');
       return {
@@ -35,9 +35,9 @@ export default (state, action) => {
         user: null,
         authenticated: null,
         message: action.payload,
-        loading: false
-      }
-    default: 
+        loading: false,
+      };
+    default:
       return state;
   }
-}
+};
