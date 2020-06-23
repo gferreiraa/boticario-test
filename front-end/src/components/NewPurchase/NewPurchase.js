@@ -4,11 +4,13 @@ import AuthContext from '../../context/Authentication/authContext';
 
 import * as GS from "../../styles/styledGeneral";
 
+import IntlCurrencyInput from "react-intl-currency-input"
+
 // actions
 import { addNewPurchaseAction } from "../../actions/purchaseActions"
 
 
-const NewPurchase = () => {
+const NewPurchase = ({ history }) => {
   // Get context authetication info
   const authContext = useContext(AuthContext);
   const { user, authenticatedUser, logoutSession } = authContext;
@@ -53,8 +55,24 @@ const NewPurchase = () => {
       status: "em aprovação",
       cashback: "10%"
     })
+
+    // Redirecionar
+    history.push('/minhas-compras')
   }
 
+  const currencyConfig = {
+    locale: "pt-BR",
+    formats: {
+      number: {
+        BRL: {
+          style: "currency",
+          currency: "BRL",
+          minimumFractionDigits: 2,
+          maximumFractionDigits: 2,
+        },
+      },
+    },
+  };
 
   return (
     <GS.PageContainer>
@@ -79,13 +97,13 @@ const NewPurchase = () => {
             onChange={e => setCode(Number(e.target.value))}
           />
           <label>Preço</label>
-          <input
+          <IntlCurrencyInput
             name="price"
-            type="number" 
             placeholder="Código do Produto"
             value={price}
-            onChange={e => setPrice(Number(e.target.value))}
-          />
+            currency="BRL" 
+            config={currencyConfig}
+            onChange={e => setPrice(e.target.value)} />
           <label>Data da compra</label>
           <input
             name="data"

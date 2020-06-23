@@ -5,6 +5,11 @@ import AuthContext from '../../context/Authentication/authContext';
 import * as GS from "../../styles/styledGeneral";
 import * as S from "./styled";
 
+import { PurchaseItem } from "../../components"
+
+// Redux
+import  { useSelector, useDispatch } from "react-redux"
+import { getPurchaseAction } from "../../actions/purchaseActions"
 
 const Purchase = () => {
   // Get context authetication info
@@ -14,6 +19,17 @@ const Purchase = () => {
   useEffect(() => {
     authenticatedUser();
   }, []);
+
+  const dispatch = useDispatch()
+  
+  useEffect(()=> {
+    // Get produtos
+    const getPurchase = () => dispatch(getPurchaseAction())
+    getPurchase()
+  }, [])
+
+  const purchaseList = useSelector( state => state.purchase.purchase)
+  console.log(purchaseList)
 
   return (
     <GS.PageContainer>
@@ -42,15 +58,23 @@ const Purchase = () => {
                         <th scope="col">Código</th>
                         <th scope="col">Valor</th>
                         <th scope="col">Data</th>
-                        <th scope="col">% de cashback </th>
-                        <th scope="col">Valor de cashback </th>
                         <th scope="col">Status </th>
-                        <th scope="col"><button>Editar</button><button>Remover</button> </th>
+                        <th scope="col">% de cashback </th>
+                        <th scope="col">Ações  </th>
                     </tr>
                </thead>
                <tbody>
 
-               </tbody>
+               { purchaseList.length === 0 ? 'Você ainda não possui compras cadastradas 😕' : (
+                purchaseList.map(item => (
+                       <PurchaseItem
+                            key={item.id}
+                            purchases={item}
+                       />
+                   ))
+               ) }
+           </tbody>
+
            </table>
           </S.Empty>
       </GS.Content>

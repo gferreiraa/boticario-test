@@ -4,3 +4,5 @@ export { default as Purchase } from './Purchase/Purchase';
 export { default as PrivateRoute } from './PrivateRoute/PrivateRoute';
 export { default as NewPurchase } from './NewPurchase/NewPurchase';
 export { default as EditePurchase } from './EditePurchase/EditePurchase';
+
+export { default as PurchaseItem } from './PurchaseItem/PurchaseItem';
