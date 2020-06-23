@@ -4,7 +4,10 @@ import {
   ADD_PURCHASE_ERROR,
   GET_PURCHASE,
   GET_PURCHASE_SUCESS,
-  GET_PURCHASE_ERROR
+  GET_PURCHASE_ERROR,
+  DELETE_PURCHASE,
+  DELETE_PURCHASE_SUCESS,
+  DELETE_PURCHASE_ERROR
   } from "../types/";
 
   import axiosClientPurchase from "../config/axiosFake"
@@ -80,5 +83,38 @@ const getPurchaseSucess = purchases => ({
 
 const getPurchaseError = () => ({
   type: GET_PURCHASE_ERROR,
+  payload: true
+})
+
+// SELECIONa e deletar produto
+export function deletePurchaseAction(id) {
+  return async (dispatch) => {
+    dispatch(deletePurchase(id))
+    console.log("id do usuari", id)
+    try {
+      await axiosClientPurchase.delete(`/purchases/${id}`)
+      dispatch(deletePurchaseSucess())
+      Swal.fire(
+        'Compra excluída',
+        'Sua compra foi excluída com sucesso!',
+        'success'
+      )
+    } catch (error) {
+      dispatch(deletePurchaseError())
+    }
+  }
+}
+
+ const deletePurchase = id => ({
+  type: DELETE_PURCHASE,
+  payload: id
+})
+
+const deletePurchaseSucess = () => ({
+  type: DELETE_PURCHASE_SUCESS
+})
+
+const deletePurchaseError = () => ({
+  type: DELETE_PURCHASE_ERROR,
   payload: true
 })

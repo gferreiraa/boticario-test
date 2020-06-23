@@ -29,7 +29,8 @@ const Purchase = () => {
   }, [])
 
   const purchaseList = useSelector( state => state.purchase.purchase)
-  console.log(purchaseList)
+  const error = useSelector(state =>state.purchase.error )
+  const loading = useSelector(state => state.purchase.loading)
 
   return (
     <GS.PageContainer>
@@ -44,13 +45,14 @@ const Purchase = () => {
         </GS.LogoutButton>
       </GS.Header>
       <GS.Content>
+          { error ? <p>Deu ruim irmão, sorry</p> : null}
           <S.Empty>
             <p>Você ainda não possui compras cadastradas 😕</p>
             <p>Clique no botão abaixo para cadastrar novas compras e receber seu cashback.</p>
             <S.AddButton>
               <Link to={'/minhas-compras/nova-compra'}>Adicionar uma nova compra</Link>
             </S.AddButton>
-
+            { loading ? <p>Carregando lista</p> : null}
             <p>tabela</p>
             <table>
                <thead>
