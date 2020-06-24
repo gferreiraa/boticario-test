@@ -2,9 +2,13 @@ import React, { useContext, useEffect, useState } from 'react';
 import { useDispatch, useSelector } from "react-redux" 
 import AuthContext from '../../context/Authentication/authContext';
 
+import { Link } from 'react-router-dom';
+
 import * as GS from "../../styles/styledGeneral";
+import * as S from "./styled";
 
 import IntlCurrencyInput from "react-intl-currency-input"
+import moment from 'moment'; 
 
 // actions
 import { addNewPurchaseAction } from "../../actions/purchaseActions"
@@ -20,8 +24,8 @@ const NewPurchase = ({ history }) => {
   }, []);
 
   // estado local do componente 
-  const [code, setCode] = useState(0);
-  const [price, setPrice] = useState(0);
+  const [code, setCode] = useState();
+  const [price, setPrice] = useState();
   const [data, setData] = useState('');
 
 
@@ -40,27 +44,29 @@ const NewPurchase = ({ history }) => {
   const sendNewPurchase = e => {
     e.preventDefault();
     
+    console.log("price", price)
     // Validar formulário
-    if(code <=0 || price <= 0 || data.trim === '') {
+    if(code.trim() === '' || price <= 0) {
       return 
     }
-
+    const test = Number(price)
+    const va = test.toLocaleString('pt-br',{style: 'currency', currency: 'BRL'})
     // Verifica se existem erros
 
     // Criar novo produto
     addNewPurchase({
       code,
-      price,
-      data,
-      status: "em aprovação",
-      cashback: "10%"
+      price:va,
+      data: moment(data).format("DD/MM/yyyy"),
+      status: "Em validação",
+      cashback: `${Math.floor(Math.random() * 100)}%`
     })
 
     // Redirecionar
     history.push('/minhas-compras')
   }
 
-  const currencyConfig = {
+/*   const currencyConfig = {
     locale: "pt-BR",
     formats: {
       number: {
@@ -72,7 +78,7 @@ const NewPurchase = ({ history }) => {
         },
       },
     },
-  };
+  }; */
 
   return (
     <GS.PageContainer>
@@ -87,41 +93,55 @@ const NewPurchase = ({ history }) => {
         </GS.LogoutButton>
       </GS.Header>
       <GS.Content>
-        <form onSubmit={sendNewPurchase}>
-          <label>Código</label>
-          <input
-            name="code"
-            type="number" 
-            placeholder="Código do Produto"
-            value={code}
-            onChange={e => setCode(Number(e.target.value))}
-          />
-          <label>Preço</label>
-          <IntlCurrencyInput
-            name="price"
-            placeholder="Código do Produto"
-            value={price}
-            currency="BRL" 
-            config={currencyConfig}
-            onChange={e => setPrice(e.target.value)} />
-          <label>Data da compra</label>
-          <input
-            name="data"
-            type="date" 
-            placeholder="Data"
-            value={data}
-            onChange={e => setData(e.target.value)}
-          />
-          <button
-            type="submit"
-          >
-              Cadastrar Compra
-          </button>
-        </form>
-        {loading ? <p>Loading</p> : null}
-        {errorLoading ? <p>DEU RUIM</p> : null}
+      <S.Container>
+          <S.HCard>
+            <S.Subtitle>Preencha o formulário abaixo para cadastrar novas compras e receber seu cashback.</S.Subtitle>
+            <S.Form onSubmit={sendNewPurchase}>
+              <S.Label>Código:</S.Label>
+              <S.Input
+                name="code"
+                type="string" 
+                placeholder="Código do Produto"
+                value={code}
+                required
+                onChange={e => setCode(e.target.value)}
+              />
+              <S.Label>Preço:</S.Label>
+              <S.Input
+                name="price"
+                type="string"
+                placeholder="Valor da Compra"
+                value={price}
+                required
+                onChange={e => setPrice(e.target.value)} />
+              <S.Label>Data da compra:</S.Label>
+              <S.Input
+                name="data"
+                type="date" 
+                placeholder="Data"
+                value={data}
+                required
+                onChange={e => setData(e.target.value)}
+              />
+              <S.AddPurchase
+                type="submit"
+              > Cadastrar Compra
+              </S.AddPurchase>
+              <Link to={'/minhas-compras'}>
+                <S.BackButton>
+                  Voltar
+                  </S.BackButton>
+              </Link>
+            </S.Form>
+            {loading ? <p>Loading</p> : null}
+            {errorLoading ? <p>DEU RUIM</p> : null}
+          
+          </S.HCard>
+      </S.Container>
       </GS.Content>
-      <GS.Footer>* Teste desenvolvido por <b>Getúlio Rafael Ferreira</b></GS.Footer>
+      <GS.Footer>
+      * Teste desenvolvido por <a target="_blank" href="https://gferreiraa.github.io/">Getúlio Rafael Ferreira</a>
+    </GS.Footer>
     </GS.PageContainer>
   );
 };

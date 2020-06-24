@@ -1,6 +1,8 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import Swal from "sweetalert2";
+import * as S from './styled';
+
 // redux
 import { useDispatch } from "react-redux"
 import {deletePurchaseAction} from "../../actions/purchaseActions"  
@@ -18,9 +20,9 @@ const PurchaseItem = ({purchases}) => {
       text: "Tem certeza que deseja excluir este item?",
       icon: 'warning',
       showCancelButton: true,
-      confirmButtonColor: '#3085d6',
-      cancelButtonColor: '#d33',
-      confirmButtonText: 'Remover',
+      confirmButtonColor: 'rgb(109,211,109)',
+      cancelButtonColor: 'rgb(242,116,116)',
+      confirmButtonText: 'Excluir',
       cancelButtonText: 'Cancelar'
   }).then((result) => {
       if (result.value) {
@@ -30,19 +32,18 @@ const PurchaseItem = ({purchases}) => {
   });
 
     // action
-    
   }
   return (
     <tr>
-      <td>{code}</td>
-      <td>{price}</td>
-      <td>{data}</td>
-      <td>{status}</td>
-      <td>{cashback}</td>
-      <td>
-        <button type="button" onClick={()=>confirmDelete(id)}>
+      <td data-label="Código">{code}</td>
+      <td data-label="Valor">{price}</td>
+      <td data-label="Data">{data}</td>
+      <td data-label="Status">{status}</td>
+      <td data-label="% de cashback">{cashback}</td>
+      <td data-label="Ações">
+        <S.DeleteButton type="button" onClick={()=>confirmDelete(id)}>
           Excluir
-        </button>
+        </S.DeleteButton>
       </td>
     </tr>
   )

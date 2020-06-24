@@ -10,12 +10,18 @@ export const PageContainer = styled.div`
 
 export const Content = styled.div`
   flex: 1 0 auto;
+  ${tw`mb-4`}
 `;
 export const Footer = styled.footer`
   font-size: 12px;
-  color: #000;
+  color: #7f7f7f;
   text-align: center;
-  margin-bottom: 10px;
+  margin: 20px;
+  & > a {
+    text-decoration: none;
+    color: #6750a3;
+    font-weight: bold;
+  }
 `;
 
 export const Header = styled.header`

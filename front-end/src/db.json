@@ -1,3 +1,28 @@
 {
-  "purchases": []
+  "purchases": [
+    {
+      "code": "eqweqw",
+      "price": "R$ 1.990,00",
+      "data": "26/06/2020",
+      "status": "Em validação",
+      "cashback": "86%",
+      "id": 1
+    },
+    {
+      "code": "dasda",
+      "price": "R$ NaN",
+      "data": "31/12/0012",
+      "status": "Em validação",
+      "cashback": "39%",
+      "id": 2
+    },
+    {
+      "code": "dasda",
+      "price": "R$ NaN",
+      "data": "19/06/2020",
+      "status": "Em validação",
+      "cashback": "97%",
+      "id": 3
+    }
+  ]
 }

@@ -7,7 +7,6 @@ import {
   Purchase,
   PrivateRoute,
   NewPurchase,
-  EditePurchase,
 } from './components';
 
 import NotificationState from './context/Notifications/notificationState';
@@ -17,9 +16,8 @@ import authToken from './config/authToken';
 import GlobalStyles from './styles/global';
 import { CSSTransition, TransitionGroup } from 'react-transition-group';
 
-//Redux
-import { Provider } from "react-redux";
-import store from "./store/store"
+import { Provider } from 'react-redux';
+import store from './store/store';
 
 const token = localStorage.getItem('token');
 if (token) {
@@ -53,11 +51,6 @@ function App() {
                         exact
                         path="/minhas-compras/nova-compra"
                         component={NewPurchase}
-                      />
-                      <PrivateRoute
-                        exact
-                        path="/minhas-compras/nova-compra/:id"
-                        component={EditePurchase}
                       />
                     </Switch>
                   </CSSTransition>
