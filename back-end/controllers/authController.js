@@ -16,13 +16,13 @@ exports.userAuthentication = async (req, res) => {
 
   // Checks whether user exists and data are correct
   try {
-    const user = await User.findOne({ email });
+    let user = await User.findOne({ email });
     if (!user) {
-      return res.status(400).json({ message: 'User does not exists!' });
+      return res.status(400).json({ message: 'Usuário não cadastrado!' });
     }
     const checkPassword = await bcryptjs.compare(password, user.password);
     if (!checkPassword) {
-      return res.status(400).json({ message: 'Incorrect password' });
+      return res.status(400).json({ message: 'Senha incorreta' });
     }
 
     // Payload data expected by JsonWebToken
@@ -45,7 +45,7 @@ exports.userAuthentication = async (req, res) => {
       }
     );
   } catch (error) {
-    // console.log(error);
+    console.log(error);
   }
 };
 
