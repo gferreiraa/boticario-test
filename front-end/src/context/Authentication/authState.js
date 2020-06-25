@@ -26,11 +26,9 @@ const AuthState = ({ children }) => {
 
   const [state, dispatch] = useReducer(AuthReducer, initialState);
 
-  // Register a new user
   const registerUser = async (info) => {
     try {
       const responseUser = await axiosClient.post('/api/users', info);
-      // console.log(responseUser.data);
       dispatch({
         type: REGISTER_SUCESS,
         payload: responseUser.data,
@@ -50,7 +48,6 @@ const AuthState = ({ children }) => {
     }
   };
 
-  // Return authenticated user
   const authenticatedUser = async () => {
     const token = localStorage.getItem('token');
 
@@ -60,28 +57,26 @@ const AuthState = ({ children }) => {
 
     try {
       const authUser = await axiosClient.get('/api/auth');
-      // console.log(authUser);
       dispatch({
         type: GET_USER,
         payload: authUser.data.user,
       });
     } catch (error) {
-      // console.log(error);
+      console.log(error);
       dispatch({
         type: LOGIN_ERROR,
       });
     }
   };
 
-  // Function to login
-  const sessionInit = async (datos) => {
+  const sessionInit = async (info) => {
     try {
-      const loginUser = await axiosClient.post('/api/auth', datos);
-      // console.log(loginUser);
+      const loginUser = await axiosClient.post('/api/auth', info);
       dispatch({
         type: LOGIN_SUCESS,
         payload: loginUser.data,
       });
+      authenticatedUser();
     } catch (error) {
       console.log(error.response.data.message);
       const notification = {
@@ -95,7 +90,6 @@ const AuthState = ({ children }) => {
     }
   };
 
-  // Function to logout
   const logoutSession = () => {
     dispatch({
       type: LOGOUT,

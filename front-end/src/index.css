@@ -17,20 +17,22 @@ code {
   top: 0;
   left: 0;
   padding: 1rem 3rem;
-  border-radius: 1rem;
+  border-radius: 0.1em;
   font-weight: 600;
   text-transform: uppercase;
-  font-size: 2.2rem;
+  font-size: 0.8rem;
   text-align: center;
   width: 100%;
+  z-index: 9999;
 }
 
 .alerta-ok {
   background-color: rgb(109, 211, 109);
   color: rgb(2, 103, 2);
 }
+
 .alerta-error {
-  background-color: rgb(230, 78, 78);
+  background-color: rgba(242, 116, 116);
   color: #fff;
 }
 
@@ -38,27 +40,29 @@ code {
   display: flex;
   min-height: 100vh;
   flex-direction: column;
-  background: linear-gradient(to right, #654ea3, #eaafc8);;
+  background: linear-gradient(to right, #654ea3, #eaafc8);
+  ;
 }
 
 .fade-appear,
 .fade-enter {
-    opacity: 0;
-    z-index: 1;
+  opacity: 0;
+  z-index: 1;
 }
+
 .fade-appear-active,
 .fade-enter.fade-enter-active {
-    opacity: 1;
-    transition: opacity 300ms linear 150ms;
+  opacity: 1;
+  transition: opacity 300ms linear 150ms;
 }
 
 .fade-exit {
-    opacity: 1;
+  opacity: 1;
 }
 
 .fade-exit.fade-exit-active {
-    opacity: 0;
-    transition: opacity 100ms linear;
+  opacity: 0;
+  transition: opacity 100ms linear;
 }
 
 table {
@@ -85,6 +89,10 @@ table tr td {
   font-size: 14px;
 }
 
+.table-row__empty > td {
+  text-align: center;
+}
+
 table th,
 table td {
   padding: .625em;
@@ -109,7 +117,7 @@ tbody tr:nth-child(odd) {
   table caption {
     font-size: 1.3em;
   }
-  
+
   table thead {
     border: none;
     clip: rect(0 0 0 0);
@@ -120,20 +128,20 @@ tbody tr:nth-child(odd) {
     position: absolute;
     width: 1px;
   }
-  
+
   table tr {
     border-bottom: 3px solid #ddd;
     display: block;
     margin-bottom: .625em;
   }
-  
+
   table td {
     border-bottom: 1px solid #ddd;
     display: block;
     font-size: .8em;
     text-align: right;
   }
-  
+
   table td::before {
     /*
     * aria-label has no advantage, it won't be read inside a table
@@ -144,7 +152,7 @@ tbody tr:nth-child(odd) {
     font-weight: bold;
     text-transform: uppercase;
   }
-  
+
   table td:last-child {
     border-bottom: 0;
   }

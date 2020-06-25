@@ -11,7 +11,6 @@ const NotificationState = ({ children }) => {
 
   const [state, dispatch] = useReducer(notificationReducer, initialState);
 
-  // Show notifications
   const showNotification = (message, category) => {
     dispatch({
       type: SHOW_NOTIFICATION,
@@ -25,7 +24,7 @@ const NotificationState = ({ children }) => {
       dispatch({
         type: HIDE_NOTIFICATION,
       });
-    }, 3000);
+    }, 2000);
   };
 
   return (

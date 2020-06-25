@@ -1,18 +1,18 @@
 import styled from 'styled-components';
 import tw from 'tailwind.macro';
 
-export const PageContainer = styled.div`
+export const PageContainer = styled.div `
   display: flex;
   flex-direction: column;
   height: 100vh;
   background: #fff;
 `;
 
-export const Content = styled.div`
+export const Content = styled.div `
   flex: 1 0 auto;
   ${tw`mb-4`}
 `;
-export const Footer = styled.footer`
+export const Footer = styled.footer `
   font-size: 12px;
   color: #7f7f7f;
   text-align: center;
@@ -24,7 +24,7 @@ export const Footer = styled.footer`
   }
 `;
 
-export const Header = styled.header`
+export const Header = styled.header `
   background-color: rgb(104, 80, 163);
   color: #fff;
   ${tw`flex justify-around items-center content-around p-3`}
@@ -33,7 +33,7 @@ export const Header = styled.header`
   }
 `;
 
-export const LogoutButton = styled.button`
+export const LogoutButton = styled.button `
   width: auto;
   cursor: pointer;
   text-align: center;

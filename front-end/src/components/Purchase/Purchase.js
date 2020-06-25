@@ -1,36 +1,32 @@
 import React, { useContext, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import AuthContext from '../../context/Authentication/authContext';
+import { PurchaseItem } from '../../components';
+import { useSelector, useDispatch } from 'react-redux';
+import { getPurchaseAction } from '../../actions/purchaseActions';
 
 import * as GS from '../../styles/styledGeneral';
 import * as S from './styled';
 
-import { PurchaseItem } from '../../components';
-
-// Redux
-import { useSelector, useDispatch } from 'react-redux';
-import { getPurchaseAction } from '../../actions/purchaseActions';
-
 const Purchase = () => {
-  // Get context authetication info
   const authContext = useContext(AuthContext);
   const { user, authenticatedUser, logoutSession } = authContext;
 
   useEffect(() => {
     authenticatedUser();
+    // eslint-disable-next-line
   }, []);
 
   const dispatch = useDispatch();
 
   useEffect(() => {
-    // Get produtos
     const getPurchase = () => dispatch(getPurchaseAction());
     getPurchase();
+    // eslint-disable-next-line
   }, []);
 
   const purchaseList = useSelector((state) => state.purchase.purchase);
   const error = useSelector((state) => state.purchase.error);
-  const loading = useSelector((state) => state.purchase.loading);
 
   return (
     <GS.PageContainer>
@@ -45,22 +41,31 @@ const Purchase = () => {
         </GS.LogoutButton>
       </GS.Header>
       <GS.Content>
-        {error ? <p>Deu ruim irmão, sorry</p> : null}
+        {error ? <p>Deu ruim, tente rodar o json-server</p> : null}
         <S.Container>
-          { purchaseList.length === 0 
-            ? <S.Subtitle>Você ainda não possui compras cadastradas 😕</S.Subtitle> 
-            : <S.Subtitle>Clique no botão abaixo para cadastrar novas compras e receber seu
-            cashback.
-          </S.Subtitle> 
-        }
+          {purchaseList.length === 0 ? (
+            <S.Subtitle>
+              Você ainda não possui compras cadastradas{' '}
+              <span role="img" aria-label="jsx-a11y/aria-proptypes">
+                😕
+              </span>
+            </S.Subtitle>
+          ) : (
+            <S.Subtitle>
+              Clique no botão abaixo para cadastrar novas compras e receber seu
+              cashback.
+            </S.Subtitle>
+          )}
           <S.AddButton>
             <Link to={'/minhas-compras/nova-compra'}>
               Adicionar uma nova compra
             </Link>
           </S.AddButton>
-          { purchaseList.length !== 0 ? <S.Caption>Minhas Compras</S.Caption> : null}
-          <table>
           {purchaseList.length !== 0 ? (
+            <S.Caption>Minhas Compras</S.Caption>
+          ) : null}
+          <table>
+            {purchaseList.length !== 0 ? (
               <thead>
                 <tr>
                   <th scope="col">Código</th>
@@ -71,21 +76,30 @@ const Purchase = () => {
                   <th scope="col">Ações </th>
                 </tr>
               </thead>
-            ) : null }
+            ) : null}
             <tbody>
-              {purchaseList.length === 0
-                ? ''
-                : purchaseList.map((item) => (
-                    <PurchaseItem key={item.id} purchases={item} />
-                ))}
+              {purchaseList.length > 0 ? (
+                purchaseList.map((item, i) => (
+                  <PurchaseItem key={i} purchases={item} />
+                ))
+              ) : (
+                <tr className="table-row__empty">
+                  <td>0 Compras</td>
+                </tr>
+              )}
             </tbody>
-            
           </table>
-
         </S.Container>
       </GS.Content>
       <GS.Footer>
-        * Teste desenvolvido por <a target="_blank" href="https://gferreiraa.github.io/">Getúlio Rafael Ferreira</a>
+        * Teste desenvolvido por{' '}
+        <a
+          target="_blank"
+          rel="noopener noreferrer"
+          href="https://gferreiraa.github.io/"
+        >
+          Getúlio Rafael Ferreira
+        </a>
       </GS.Footer>
     </GS.PageContainer>
   );

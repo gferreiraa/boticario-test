@@ -3,12 +3,12 @@ import { Route, Redirect } from 'react-router-dom';
 import AuthContext from '../../context/Authentication/authContext';
 
 const PrivateRoute = ({ component: Component, ...props }) => {
-  // Get context authetication info
   const authContext = useContext(AuthContext);
   const { authenticated, loading, authenticatedUser } = authContext;
 
   useEffect(() => {
     authenticatedUser();
+    // eslint-disable-next-line
   }, []);
 
   return (

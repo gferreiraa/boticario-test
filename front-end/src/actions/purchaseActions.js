@@ -1,5 +1,5 @@
-import { 
-  ADD_PURCHASE, 
+import {
+  ADD_PURCHASE,
   ADD_PURCHASE_SUCESS,
   ADD_PURCHASE_ERROR,
   GET_PURCHASE,
@@ -7,114 +7,107 @@ import {
   GET_PURCHASE_ERROR,
   DELETE_PURCHASE,
   DELETE_PURCHASE_SUCESS,
-  DELETE_PURCHASE_ERROR
-  } from "../types/";
+  DELETE_PURCHASE_ERROR,
+} from '../types/';
 
-  import axiosClientPurchase from "../config/axiosFake"
-  import Swal from "sweetalert2";
+import axiosClientPurchase from '../config/axiosFake';
+import Swal from 'sweetalert2';
 
-// Adicionar novas compras
 export function addNewPurchaseAction(purchase) {
-  return  async (dispatch) => {
+  return async (dispatch) => {
     dispatch(addPurchase());
     try {
-      // Adiciona os dados a fake api
-      await axiosClientPurchase.post('/purchases', purchase)
-      dispatch(addPurchaseSucess(purchase))
+      await axiosClientPurchase.post('/purchases', purchase);
+      dispatch(addPurchaseSucess(purchase));
       // Sweet alert
       Swal.fire(
         'Parabéns',
         'Sua nova compra foi cadastrada com sucesso!',
         'success'
-      )
+      );
     } catch (error) {
-      console.log(error)
-      dispatch(addPurchaseError(true))
+      console.log(error);
+      dispatch(addPurchaseError(true));
       Swal.fire({
         icon: 'error',
         title: 'Desculpe',
-        text: 'Ocorreu um erro inesperado.'
-      })
+        text: 'Ocorreu um erro inesperado.',
+      });
     }
-  }
+  };
 }
 
 const addPurchase = () => ({
   type: ADD_PURCHASE,
-  payload: true
-})
-
-// Salvar produto
-const addPurchaseSucess = purchase => (({
-  type: ADD_PURCHASE_SUCESS,
-  payload: purchase
-}))
-
-// Erro ao inserir produto
-const addPurchaseError = error => ({
-  type: ADD_PURCHASE_ERROR,
-  payload: error
+  payload: true,
 });
 
-// Função para get de novos produtos
-export function getPurchaseAction(){
+const addPurchaseSucess = (purchase) => ({
+  type: ADD_PURCHASE_SUCESS,
+  payload: purchase,
+});
+
+const addPurchaseError = (error) => ({
+  type: ADD_PURCHASE_ERROR,
+  payload: error,
+});
+
+export function getPurchaseAction() {
   return async (dispatch) => {
-    dispatch(getPurchase())
+    dispatch(getPurchase());
 
     try {
-      const res = await axiosClientPurchase.get('/purchases')
-      dispatch(getPurchaseSucess(res.data))
+      const res = await axiosClientPurchase.get('/purchases');
+      dispatch(getPurchaseSucess(res.data));
     } catch (error) {
-      console.log(error)
-      dispatch(getPurchaseError())
+      console.log(error);
+      dispatch(getPurchaseError());
     }
-  }
+  };
 }
 
 const getPurchase = () => ({
   type: GET_PURCHASE,
-  payload: true
-})
+  payload: true,
+});
 
-const getPurchaseSucess = purchases => ({
+const getPurchaseSucess = (purchases) => ({
   type: GET_PURCHASE_SUCESS,
-  payload: purchases
-})
+  payload: purchases,
+});
 
 const getPurchaseError = () => ({
   type: GET_PURCHASE_ERROR,
-  payload: true
-})
+  payload: true,
+});
 
-// SELECIONa e deletar produto
 export function deletePurchaseAction(id) {
   return async (dispatch) => {
-    dispatch(deletePurchase(id))
-    console.log("id do usuari", id)
+    dispatch(deletePurchase(id));
     try {
-      await axiosClientPurchase.delete(`/purchases/${id}`)
-      dispatch(deletePurchaseSucess())
+      await axiosClientPurchase.delete(`/purchases/${id}`);
+      dispatch(deletePurchaseSucess());
       Swal.fire(
         'Compra excluída',
         'Sua compra foi excluída com sucesso!',
         'success'
-      )
+      );
     } catch (error) {
-      dispatch(deletePurchaseError())
+      dispatch(deletePurchaseError());
     }
-  }
+  };
 }
 
- const deletePurchase = id => ({
+const deletePurchase = (id) => ({
   type: DELETE_PURCHASE,
-  payload: id
-})
+  payload: id,
+});
 
 const deletePurchaseSucess = () => ({
-  type: DELETE_PURCHASE_SUCESS
-})
+  type: DELETE_PURCHASE_SUCESS,
+});
 
 const deletePurchaseError = () => ({
   type: DELETE_PURCHASE_ERROR,
-  payload: true
-})
+  payload: true,
+});
