@@ -1,0 +1,39 @@
+{
+  "name": "back-end-boticario",
+  "version": "1.0.0",
+  "description": "Back-end API",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node .",
+    "dev": "nodemon ."
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/gferreiraa/boticario-test.git"
+  },
+  "author": "Getulio Rafael Ferreira <gferreiraa@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/gferreiraa/boticario-test/issues"
+  },
+  "homepage": "https://github.com/gferreiraa/boticario-test#readme",
+  "devDependencies": {
+    "eslint": "^7.2.0",
+    "eslint-config-airbnb-base": "^14.2.0",
+    "eslint-plugin-import": "^2.21.2",
+    "nodemon": "^2.0.4"
+  },
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "cors": "^2.8.5",
+    "dotenv": "^8.2.0",
+    "eslint-config-prettier": "^6.11.0",
+    "eslint-plugin-prettier": "^3.1.4",
+    "express": "^4.17.1",
+    "express-validator": "^6.5.0",
+    "jsonwebtoken": "^8.5.1",
+    "mongoose": "^5.9.19",
+    "prettier": "^2.0.5"
+  }
+}
