@@ -1,5 +1,5 @@
 # Boticário:
-#### Test: Desenvolvedor Front-end
+#### Teste: Desenvolvedor Front-end
 
 Desafio – “Eu revendedor ‘O Boticário’ quero ter benefícios de acordo com o meu volume de vendas”. 
 
