@@ -42,7 +42,7 @@ yarn install
 ```
 
 ### Executando o projeto:
-Para executar o projeto podemos inicialmente devemos iniciar nosso [Back-end](), após isso executamos o comando para que a aplicação seja exibida em: http://localhost:3000/ 
+Para executar o projeto podemos inicialmente devemos iniciar nosso [Back-end](https://github.com/gferreiraa/boticario-test/blob/master/back-end/README.md), após isso executamos o comando para que a aplicação seja exibida em: http://localhost:3000/ 
 
 ```
 yarn start
